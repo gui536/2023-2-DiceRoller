@@ -10,7 +10,8 @@
             VerticalOptions="Center">
 
             <Image
-                Source="dice_1.png"
+                x:Name="diceImage"
+                Source="dice_d4.png"
                 SemanticProperties.Description="A dice with the number 1 facing up"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
