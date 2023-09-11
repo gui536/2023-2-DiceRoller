@@ -2,23 +2,35 @@
 
 public partial class MainPage : ContentPage
 {
-	int count = 0;
+    int numSides = 6;
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+        sidesPicker.SelectedIndex = 0;
+    }
 
-	private void OnCounterClicked(object sender, EventArgs e)
-	{
-		count++;
+    public class Dice
+    {
+        public Dice() { }
+        public Dice(int numSides)
+        {
+            this.numSides = numSides;
+        }
+        private int numSides;
 
-		if (count == 1)
-			CounterBtn.Text = $"Clicked {count} time";
-		else
-			CounterBtn.Text = $"Clicked {count} times";
+        public int RollDice()
+        {
+            int random = new Random().Next(1, numSides + 1);
+            return random;
+        }
+    }
 
-		SemanticScreenReader.Announce(CounterBtn.Text);
-	}
+    public void OnRollClicked(object sender, EventArgs e)
+    {
+        numSides = Convert.ToInt32(sidesPicker.SelectedItem.ToString());
+        Dice dice = new Dice(numSides);
+        labelNumber.Text = dice.RollDice().ToString();
+    }
 }
 
